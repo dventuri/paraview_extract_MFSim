@@ -14,6 +14,8 @@ def numericalSort(value):
     parts[1::2] = map(int, parts[1::2])
     return parts
 
+#TODO: flag a partir de ...
+
 ### base folder and filename
 base_dir = "/home/dventuri/st_euler/sp_5x5_CoF_forced_evap/output"
 filename = f"{base_dir}/ns_output_ct.0001*.hdf5"
