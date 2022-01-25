@@ -41,13 +41,7 @@ slice1.HyperTreeGridSlicer = 'Plane'
 slice1.SliceOffsetValues = [0.0]
 
 # Properties modified on slice1.SliceType
-slice1.SliceType.Origin = [0.4999, 0.5000000000000002, 0.5000000000000002]
-
-# show data in view
-#slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
-
-# update the view to ensure updated data information
-#renderView1.Update()
+slice1.SliceType.Origin = [0.4999, 0.5, 0.5]
 
 # save data
 SaveData(f'{base_dir}/test.csv', proxy=slice1, PointDataArrays=['dpm_diam_average', 'dpm_diam_maximum', 'dpm_diam_minimum', 'dpm_diam_stddev', 'temperature_average', 'temperature_maximum', 'temperature_minimum', 'temperature_stddev'])
