@@ -1,28 +1,34 @@
 # trace generated using paraview version 5.9.0
 # modified
 
+### filename and timestep selection
+base_dir = "/home/dventuri/st_euler/sp_5x5_CoF_forced_evap/output"
+base_fname = f"{base_dir}/ns_output_ct.*.hdf5"
+timestep_treshold = 129500
+
+#imports
 import glob
 import re
-
-#### import the simple module from the paraview
-from paraview.simple import *
+from paraview.simple import *   # import the simple module from the paraview
 
 ### function to sort numerically
-numbers = re.compile(r'(\d+)')
 def numericalSort(value):
-    parts = numbers.split(value)
-    parts[1::2] = map(int, parts[1::2])
-    return parts
+    numbers = re.compile(r'(\d+)')  #regex to match any repeating numerical Unicode character
+    parts = numbers.split(value)    #splits the string using "numbers"
+    parts = map(int, parts[1::2])   #returns only the numbers converted to ints
+    return tuple(parts)
 
-#TODO: flag a partir de ...
+### function to compare timesteps
+def timestep_above(value, threshold):
+    parts = numericalSort(value)
+    return parts[-2] >= threshold    #uses second to last number (last is 5 for .hdf5)
 
-### base folder and filename
-base_dir = "/home/dventuri/st_euler/sp_5x5_CoF_forced_evap/output"
-filename = f"{base_dir}/ns_output_ct.0001*.hdf5"
+# generate list o filenames to read (numerically sorted and only above timestep threshold)
+fnames = sorted(glob.glob(base_fname), key=numericalSort)   #sorts the list of names using the converted numbers
+fnames = [fname for fname in fnames if timestep_above(fname, 100500)]
 
-#print(sorted(glob.glob(filename), key=numericalSort))
 # create a new 'VisItChomboReader'
-db = VisItChomboReader(FileName=sorted(glob.glob(filename)))
+db = VisItChomboReader(FileName=fnames)
 
 # Properties modified on db
 db.PointArrayStatus = ['dpm_diam', 'temperature']
