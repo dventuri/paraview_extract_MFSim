@@ -31,10 +31,19 @@ fnames = [fname for fname in fnames if timestep_above(fname, 100500)]
 db = VisItChomboReader(FileName=fnames)
 
 # Properties modified on db
-db.PointArrayStatus = ['dpm_diam', 'temperature']
+db.PointArrayStatus = ['dpm_diam', 'temperature', 'dpm_u', 'dpm_mass']
+
+# create a new 'Calculator'
+# vazao de gotas = concentracao de gotas na celula * velocidade (das gotas) * area
+#                = dpm_mass/cell_volume * dpm_u * cell area
+#                = dpm_mass*dpm_u/0.025
+calculator1 = Calculator(registrationName='Calculator1', Input=db)
+calculator1.Function = ''
+calculator1.ResultArrayName = 'vazao'
+calculator1.Function = 'dpm_mass*dpm_npart/0.025'
 
 # create a new 'Extract AMR Blocks'
-extractAMRBlocks1 = ExtractAMRBlocks(registrationName='ExtractAMRBlocks1', Input=db)
+extractAMRBlocks1 = ExtractAMRBlocks(registrationName='ExtractAMRBlocks1', Input=calculator1)
 
 # Properties modified on extractAMRBlocks1
 extractAMRBlocks1.SelectedDataSets = [0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 15]
@@ -52,4 +61,8 @@ slice1.SliceOffsetValues = [0.0]
 slice1.SliceType.Origin = [0.4999, 0.5, 0.5]
 
 # save data
-SaveData(f'{base_dir}/test.csv', proxy=slice1, PointDataArrays=['dpm_diam_average', 'dpm_diam_maximum', 'dpm_diam_minimum', 'dpm_diam_stddev', 'temperature_average', 'temperature_maximum', 'temperature_minimum', 'temperature_stddev'])
+SaveData(f'{base_dir}/test.csv', proxy=slice1, PointDataArrays=[
+    'dpm_diam_average', 'dpm_diam_maximum', 'dpm_diam_minimum', 'dpm_diam_stddev',
+    'temperature_average', 'temperature_maximum', 'temperature_minimum', 'temperature_stddev',
+    'vazao_average'
+])
