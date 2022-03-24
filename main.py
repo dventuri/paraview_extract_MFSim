@@ -33,25 +33,30 @@ fnames = [fname for fname in fnames if timestep_above(fname, timestep_treshold)]
 db = VisItChomboReader(FileName=fnames)
 
 # Properties modified on db
-db.PointArrayStatus = ['dpm_diam', 'temperature', 'dpm_u', 'dpm_mass']
+db.PointArrayStatus = [
+    'u', 'v', 'w',
+    'temperature', 'Y_N2',
+    'dpm_diam', 'dpm_mass', 'dpm_npart',
+    'dpm_u', 'dpm_v', 'dpm_w'
+]
+
+# create a new 'Extract AMR Blocks'
+extractAMRBlocks1 = ExtractAMRBlocks(registrationName='ExtractAMRBlocks1', Input=db)
+
+# Properties modified on extractAMRBlocks1
+extractAMRBlocks1.SelectedDataSets = [0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 15]
 
 # create a new 'Calculator'
 # vazao de gotas = concentracao de gotas na celula * velocidade (das gotas) * area
 #                = dpm_mass/cell_volume * dpm_u * cell area
 #                = dpm_mass*dpm_u/0.025
-calculator1 = Calculator(registrationName='Calculator1', Input=db)
+calculator1 = Calculator(registrationName='Calculator1', Input=extractAMRBlocks1)
 calculator1.Function = ''
 calculator1.ResultArrayName = 'vazao'
 calculator1.Function = 'dpm_mass*dpm_npart/0.025'
 
-# create a new 'Extract AMR Blocks'
-extractAMRBlocks1 = ExtractAMRBlocks(registrationName='ExtractAMRBlocks1', Input=calculator1)
-
-# Properties modified on extractAMRBlocks1
-extractAMRBlocks1.SelectedDataSets = [0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 15]
-
 # create a new 'Temporal Statistics'
-temporalStatistics1 = TemporalStatistics(registrationName='TemporalStatistics1', Input=extractAMRBlocks1)
+temporalStatistics1 = TemporalStatistics(registrationName='TemporalStatistics1', Input=calculator1)
 
 # create a new 'Slice'
 slice1 = Slice(registrationName='Slice1', Input=temporalStatistics1)
@@ -64,7 +69,10 @@ slice1.SliceType.Origin = [0.4999, 0.5, 0.5]
 
 # save data
 SaveData(f'{base_dir}/test.csv', proxy=slice1, PointDataArrays=[
-    'dpm_diam_average', 'dpm_diam_maximum', 'dpm_diam_minimum', 'dpm_diam_stddev',
-    'temperature_average', 'temperature_maximum', 'temperature_minimum', 'temperature_stddev',
+    'u_average', 'v_average', 'w_average',
+    'temperature_average', 'temperature_stddev',
+    'Y_N2_average', 'Y_N2_stddev',
+    'dpm_diam_average', 'dpm_diam_stddev',
+    'dpm_u_average', 'dpm_u_stddev', 'dpm_v_average', 'dpm_v_stddev', 'dpm_w_average', 'dpm_w_stddev',
     'vazao_average'
 ])
