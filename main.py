@@ -1,3 +1,5 @@
+# before unsing in cluster6: ml gnu python/3.9.0 paraview
+
 # trace generated using paraview version 5.9.0
 # modified
 
