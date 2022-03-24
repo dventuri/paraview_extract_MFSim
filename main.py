@@ -27,7 +27,7 @@ def timestep_above(value, threshold):
 
 # generate list o filenames to read (numerically sorted and only above timestep threshold)
 fnames = sorted(glob.glob(base_fname), key=numericalSort)   #sorts the list of names using the converted numbers
-fnames = [fname for fname in fnames if timestep_above(fname, 100500)]
+fnames = [fname for fname in fnames if timestep_above(fname, timestep_treshold)]
 
 # create a new 'VisItChomboReader'
 db = VisItChomboReader(FileName=fnames)
