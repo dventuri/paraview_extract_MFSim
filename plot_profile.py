@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-values = np.loadtxt('vel.txt')
+values = np.loadtxt('./30m_cont/temperature.txt')
 
-yy = np.ndarray(shape=(41,41), buffer=np.array(values[:,0]))
-zz = np.ndarray(shape=(41,41), buffer=np.array(values[:,1]))
-plot_var = np.ndarray(shape=(41,41), buffer=np.array(values[:,2]))
+yy = np.ndarray(shape=(81,81), buffer=np.array(values[:,0]))
+zz = np.ndarray(shape=(81,81), buffer=np.array(values[:,1]))
+plot_var = np.ndarray(shape=(81,81), buffer=np.array(values[:,2]))
 
 circle = plt.Circle((0.5,0.5), 0.3207, color='white', fill=False, linewidth=1)
 fig, ax = plt.subplots(figsize=(6,6))
