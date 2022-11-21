@@ -1,6 +1,8 @@
 ### import modules
 import numpy as np
 
+base_dir = "./30m_cont"
+base_fname = f"{base_dir}/15m.csv"
 
 # Function: sort array in correct order and save to file
 def sort(data_array):
@@ -22,7 +24,7 @@ def sort(data_array):
 # u, v and w fluid velocity
 data = []
 data = np.loadtxt(
-    'test_5x5.csv',
+    base_fname,
     delimiter=',',
     skiprows=1,
     usecols=(
@@ -35,12 +37,12 @@ data = np.loadtxt(
 )
 data_new = []
 data_new = sort(data)
-np.savetxt('vel.txt', data_new)
+np.savetxt(f"{base_dir}/vel_15.txt", data_new)
 
 # temperature
 data = []
 data = np.loadtxt(
-    'test_5x5.csv',
+    base_fname,
     delimiter=',',
     skiprows=1,
     usecols=(
@@ -52,12 +54,12 @@ data = np.loadtxt(
 )
 data_new = []
 data_new = sort(data)
-np.savetxt('temperature.txt', data_new)
+np.savetxt(f'{base_dir}/temperature_15.txt', data_new)
 
 # yk_n2
 data = []
 data = np.loadtxt(
-    'test_5x5.csv',
+    base_fname,
     delimiter=',',
     skiprows=1,
     usecols=(
@@ -69,12 +71,12 @@ data = np.loadtxt(
 )
 data_new = []
 data_new = sort(data)
-np.savetxt('yk.txt', data_new)
+np.savetxt(f'{base_dir}/yk_15.txt', data_new)
 
 # dpdiam
 data = []
 data = np.loadtxt(
-    'test_5x5.csv',
+    base_fname,
     delimiter=',',
     skiprows=1,
     usecols=(
@@ -86,12 +88,12 @@ data = np.loadtxt(
 )
 data_new = []
 data_new = sort(data)
-np.savetxt('dpdiam.txt', data_new)
+np.savetxt(f'{base_dir}/dpdiam_15.txt', data_new)
 
 # dpvel
 data = []
 data = np.loadtxt(
-    'test_5x5.csv',
+    base_fname,
     delimiter=',',
     skiprows=1,
     usecols=(
@@ -107,12 +109,29 @@ data = np.loadtxt(
 )
 data_new = []
 data_new = sort(data)
-np.savetxt('dpvel.txt', data_new)
+np.savetxt(f'{base_dir}/dpvel_15.txt', data_new)
+
+# dpNpart
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        15, # dpm_npart_average
+        18  # dpm_npart_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpNpart_15.txt', data_new)
 
 # dpm_mass_flow - PDF
 data = []
 data = np.loadtxt(
-    'test_5x5.csv',
+    base_fname,
     delimiter=',',
     skiprows=1,
     usecols=(
@@ -128,7 +147,7 @@ total_flow = data_new[:,2].sum()
 data_new[:,2] = data_new[:,2]/total_flow
 data_new[:,2] = np.cumsum(data_new[:,2])
 
-np.savetxt('dpm_flow.txt', data_new)
+np.savetxt(f'{base_dir}/dpm_flow_15.txt', data_new)
 print('add total_mass_flow to first line!!!', total_flow)
 
 ### testing fortran array and read function for MFSim
