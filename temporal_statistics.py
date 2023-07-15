@@ -135,20 +135,20 @@ for ts in range(len(fnames)-1):
 
     ### save data
     print("Saving data")
-    with open('u.txt','a') as f:
+    with open('u_avg.txt','a') as f:
         f.write(f"{fnames[-2-ts][-10:-5]} {mean_u}\n")
 
-    with open('YH2O.txt','a') as f:
+    with open('YH2O_avg.txt','a') as f:
         f.write(f"{fnames[-2-ts][-10:-5]} {mean_YH2O}\n")
 
-    with open('temperature.txt','a') as f:
+    with open('temperature_avg.txt','a') as f:
         f.write(f"{fnames[-2-ts][-10:-5]} {mean_T}\n")
 
-    with open('dpdiam.txt','a') as f:
+    with open('dpdiam_avg.txt','a') as f:
         f.write(f"{fnames[-2-ts][-10:-5]} {mean_dpdiam}\n")
 
-    with open('dpmass.txt','a') as f:
+    with open('dpmass_avg.txt','a') as f:
         f.write(f"{fnames[-2-ts][-10:-5]} {mean_dpmass}\n")
 
-    with open('dpu.txt','a') as f:
+    with open('dpu_avg.txt','a') as f:
         f.write(f"{fnames[-2-ts][-10:-5]} {mean_dpu}\n")
