@@ -35,7 +35,7 @@ db = VisItChomboReader(FileName=fnames)
 # Properties modified on db
 db.PointArrayStatus = [
     'u', 'v', 'w',
-    'temperature', 'Y_N2',
+    'temperature', 'Y_N2', 'Y_H2O',
     'dpm_diam', 'dpm_mass', 'dpm_npart',
     'dpm_u', 'dpm_v', 'dpm_w'
 ]
@@ -66,6 +66,7 @@ SaveData(f'{base_dir}/paraview/test.csv', proxy=slice1, PointDataArrays=[
     'u_average', 'v_average', 'w_average',
     'temperature_average', 'temperature_stddev',
     'Y_N2_average', 'Y_N2_stddev',
+    'Y_H2O_average', 'Y_H2O_stddev',
     'dpm_diam_average', 'dpm_diam_stddev',
     'dpm_u_average', 'dpm_u_stddev', 'dpm_v_average', 'dpm_v_stddev', 'dpm_w_average', 'dpm_w_stddev',
     'vazao_average'
