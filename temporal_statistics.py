@@ -41,6 +41,9 @@ fnames = [fname for fname in fnames if timestep_above(fname, timestep_treshold)]
 ### ITERATE OVER ALL FILES TO GET STATISTICS
 
 for ts in range(len(fnames)-1):
+    # use the following line in case a contination is needed
+    # if (ts < 73): continue
+
     # create a new 'VisItChomboReader'
     db = VisItChomboReader(FileName=fnames[-2-ts:]) # reversed loop
                                                     # from last ts alone,
