@@ -23,11 +23,9 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths='1')
 fig.tight_layout(pad=0.01)
-# plt.savefig('velFluid_twoPhaseValidation.pdf',
-#             format='pdf')
-# plt.savefig('velFluid_twoPhaseValidation.tiff',
-#             dpi=1000,
-#             format='tiff')
+plt.savefig('./milena_30m/figures/temperature_ts.png',
+            dpi=1200,
+            format='png')
 
 
 x, y = np.loadtxt("./milena_30m/u_ts.txt",
@@ -52,11 +50,9 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths='1')
 fig.tight_layout(pad=0.01)
-# plt.savefig('velFluid_twoPhaseValidation.pdf',
-#             format='pdf')
-# plt.savefig('velFluid_twoPhaseValidation.tiff',
-#             dpi=1000,
-#             format='tiff')
+plt.savefig('./milena_30m/figures/u_ts.png',
+            dpi=1200,
+            format='png')
 
 
 x, y = np.loadtxt("./milena_30m/YH2O_ts.txt",
@@ -81,11 +77,9 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths='1')
 fig.tight_layout(pad=0.01)
-# plt.savefig('velFluid_twoPhaseValidation.pdf',
-#             format='pdf')
-# plt.savefig('velFluid_twoPhaseValidation.tiff',
-#             dpi=1000,
-#             format='tiff')
+plt.savefig('./milena_30m/figures/YH2O_ts.png',
+            dpi=1200,
+            format='png')
 
 
 x, y = np.loadtxt("./milena_30m/dpdiam_ts.txt",
@@ -110,11 +104,9 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths='1')
 fig.tight_layout(pad=0.01)
-# plt.savefig('velFluid_twoPhaseValidation.pdf',
-#             format='pdf')
-# plt.savefig('velFluid_twoPhaseValidation.tiff',
-#             dpi=1000,
-#             format='tiff')
+plt.savefig('./milena_30m/figures/dpdiam_ts.png',
+            dpi=1200,
+            format='png')
 
 
 x, y = np.loadtxt("./milena_30m/dpmass_ts.txt",
@@ -139,11 +131,9 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths='1')
 fig.tight_layout(pad=0.01)
-# plt.savefig('velFluid_twoPhaseValidation.pdf',
-#             format='pdf')
-# plt.savefig('velFluid_twoPhaseValidation.tiff',
-#             dpi=1000,
-#             format='tiff')
+plt.savefig('./milena_30m/figures/dpmass_ts.png',
+            dpi=1200,
+            format='png')
 
 
 x, y = np.loadtxt("./milena_30m/dpu_ts.txt",
@@ -168,8 +158,6 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths='1')
 fig.tight_layout(pad=0.01)
-# plt.savefig('velFluid_twoPhaseValidation.pdf',
-#             format='pdf')
-# plt.savefig('velFluid_twoPhaseValidation.tiff',
-#             dpi=1000,
-#             format='tiff')
+plt.savefig('./milena_30m/figures/dpu_ts.png',
+            dpi=1200,
+            format='png')
