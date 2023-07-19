@@ -82,6 +82,33 @@ plt.savefig('./milena_30m/figures/YH2O_ts.png',
             format='png')
 
 
+x, y = np.loadtxt("./milena_30m/density_ts.txt",
+                   dtype=float,
+                   skiprows=0,
+                   delimiter=' ',
+                   unpack=True)
+
+plt.style.use('singleColumn.mplstyle')
+fig, ax = plt.subplots()
+ax.set_xlabel('Time-step number')
+ax.set_ylabel(r'$\rho_g$ [-]')
+ax.axis([0.0, 70000, 0.735, 0.738])
+ax.xaxis.set_major_locator(plt.MultipleLocator(10000))
+ax.xaxis.set_minor_locator(plt.MultipleLocator(5000))
+ax.yaxis.set_major_locator(plt.MultipleLocator(.0005))
+ax.yaxis.set_minor_locator(plt.MultipleLocator(.0001))
+ax.scatter(x, y,
+           s=25,
+           c='white',
+           marker='o',
+           edgecolors='black',
+           linewidths='1')
+fig.tight_layout(pad=0.01)
+plt.savefig('./milena_30m/figures/density_ts.png',
+            dpi=1200,
+            format='png')
+
+
 x, y = np.loadtxt("./milena_30m/dpdiam_ts.txt",
                    dtype=float,
                    skiprows=0,
