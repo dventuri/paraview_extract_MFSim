@@ -47,7 +47,7 @@ for ts in range(len(fnames)):
 
     # Properties modified on db
     db.PointArrayStatus = [
-        'u', 'Y_H2O', 'temperature',
+        'u', 'Y_H2O', 'temperature', 'density',
         'dpm_diam', 'dpm_mass', 'dpm_u'
     ]
 
@@ -97,6 +97,10 @@ for ts in range(len(fnames)):
     pythonAnnotation2.UpdatePipeline()
     string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
     area_T = annotate2value(string)*AreaSquare/AreaCirc
+    pythonAnnotation2.Expression = 'density'
+    pythonAnnotation2.UpdatePipeline()
+    string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
+    area_rho = annotate2value(string)*AreaSquare/AreaCirc
     pythonAnnotation2.Expression = 'dpm_diam'
     pythonAnnotation2.UpdatePipeline()
     string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
@@ -136,6 +140,9 @@ for ts in range(len(fnames)):
 
     with open('temperature_ts.txt','a') as f:
         f.write(f"{fnames[ts][-10:-5]} {area_T}\n")
+
+    with open('density_ts.txt','a') as f:
+        f.write(f"{fnames[ts][-10:-5]} {area_rho}\n")
 
     with open('dpdiam_ts.txt','a') as f:
         f.write(f"{fnames[ts][-10:-5]} {area_dpdiam}\n")
