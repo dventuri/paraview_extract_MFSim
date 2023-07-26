@@ -1,8 +1,8 @@
 ### import modules
 import numpy as np
 
-base_dir = "./30m_cont"
-base_fname = f"{base_dir}/15m.csv"
+base_dir = "./milena_30m"
+base_fname = f"{base_dir}/data.csv"
 
 # Function: sort array in correct order and save to file
 def sort(data_array):
@@ -30,14 +30,14 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        35, # u_average
-        39, # v_average
+        39, # u_average
+        43, # v_average
         47  # w_average
     )
 )
 data_new = []
 data_new = sort(data)
-np.savetxt(f"{base_dir}/vel_15.txt", data_new)
+np.savetxt(f"{base_dir}/u_avg.txt", data_new)
 
 # temperature
 data = []
@@ -48,15 +48,15 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        31, # temperature_average
-        34  # temperature_stddev
+        35, # temperature_average
+        38  # temperature_stddev
     )
 )
 data_new = []
 data_new = sort(data)
-np.savetxt(f'{base_dir}/temperature_15.txt', data_new)
+np.savetxt(f'{base_dir}/temperature_avg.txt', data_new)
 
-# yk_n2
+# yk_h2o
 data = []
 data = np.loadtxt(
     base_fname,
@@ -71,7 +71,24 @@ data = np.loadtxt(
 )
 data_new = []
 data_new = sort(data)
-np.savetxt(f'{base_dir}/yk_15.txt', data_new)
+np.savetxt(f'{base_dir}/ykH2O_avg.txt', data_new)
+
+# density
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        11, # rho_average
+        14  # rho_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/rho_avg.txt', data_new)
 
 # dpdiam
 data = []
@@ -82,13 +99,13 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        7, # dpdiam_average
-        10  # dpdiam_stddev
+        15, # dpdiam_average
+        18  # dpdiam_stddev
     )
 )
 data_new = []
 data_new = sort(data)
-np.savetxt(f'{base_dir}/dpdiam_15.txt', data_new)
+np.savetxt(f'{base_dir}/dpdiam_avg.txt', data_new)
 
 # dpvel
 data = []
@@ -99,56 +116,56 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        19, # dpmu_average
-        23, # dpmv_average
-        27, # dpmw_average
-        22, # dpmu_stddev
-        26, # dpmv_stddev
-        30  # dpmw_stddev
+        23, # dpmu_average
+        27, # dpmv_average
+        31, # dpmw_average
+        26, # dpmu_stddev
+        30, # dpmv_stddev
+        34  # dpmw_stddev
     )
 )
 data_new = []
 data_new = sort(data)
-np.savetxt(f'{base_dir}/dpvel_15.txt', data_new)
+np.savetxt(f'{base_dir}/dpvel_avg.txt', data_new)
 
-# dpNpart
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        15, # dpm_npart_average
-        18  # dpm_npart_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/dpNpart_15.txt', data_new)
+# # dpNpart
+# data = []
+# data = np.loadtxt(
+#     base_fname,
+#     delimiter=',',
+#     skiprows=1,
+#     usecols=(
+#         1,  # y position
+#         2,  # z position
+#         15, # dpm_npart_average
+#         18  # dpm_npart_stddev
+#     )
+# )
+# data_new = []
+# data_new = sort(data)
+# np.savetxt(f'{base_dir}/dpNpart_avg.txt', data_new)
 
-# dpm_mass_flow - PDF
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        43  # vazao_average
-    )
-)
-data_new = []
-data_new = sort(data)
+# # dpm_mass_flow - PDF
+# data = []
+# data = np.loadtxt(
+#     base_fname,
+#     delimiter=',',
+#     skiprows=1,
+#     usecols=(
+#         1,  # y position
+#         2,  # z position
+#         43  # vazao_average
+#     )
+# )
+# data_new = []
+# data_new = sort(data)
 
-total_flow = data_new[:,2].sum()
-data_new[:,2] = data_new[:,2]/total_flow
-data_new[:,2] = np.cumsum(data_new[:,2])
+# total_flow = data_new[:,2].sum()
+# data_new[:,2] = data_new[:,2]/total_flow
+# data_new[:,2] = np.cumsum(data_new[:,2])
 
-np.savetxt(f'{base_dir}/dpm_flow_15.txt', data_new)
-print('add total_mass_flow to first line!!!', total_flow)
+# np.savetxt(f'{base_dir}/dpm_flow_15.txt', data_new)
+# print('add total_mass_flow to first line!!!', total_flow)
 
 ### testing fortran array and read function for MFSim
 # data_test_fortran = np.concatenate(([[None,None,None]],masked_data),axis=0)
