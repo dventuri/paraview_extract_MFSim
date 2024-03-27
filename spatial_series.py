@@ -46,10 +46,7 @@ db = VisItChomboReader(FileName=fnames[-1]) #use only last timestep
 print("Reading timestep ", fnames[-1][-10:-5])
 
 # Properties modified on db
-db.PointArrayStatus = [
-    'u', 'Y_H2O', 'temperature', 'density',
-    'dpm_diam', 'dpm_mass', 'dpm_u'
-]
+db.PointArrayStatus = ['u', 'Y_H2O', 'temperature']
 
 xs = np.linspace(0.000001, 29.999999, 61)
 for count, x in enumerate(xs):
@@ -102,22 +99,6 @@ for count, x in enumerate(xs):
     pythonAnnotation2.UpdatePipeline()
     string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
     area_T = annotate2value(string)*AreaSquare/AreaCirc
-    pythonAnnotation2.Expression = 'density'
-    pythonAnnotation2.UpdatePipeline()
-    string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
-    area_rho = annotate2value(string)*AreaSquare/AreaCirc
-    pythonAnnotation2.Expression = 'dpm_diam'
-    pythonAnnotation2.UpdatePipeline()
-    string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
-    area_dpdiam = annotate2value(string)*AreaSquare/AreaCirc
-    pythonAnnotation2.Expression = 'dpm_mass'
-    pythonAnnotation2.UpdatePipeline()
-    string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
-    area_dpmass = annotate2value(string)*AreaSquare/AreaCirc
-    pythonAnnotation2.Expression = 'dpm_u'
-    pythonAnnotation2.UpdatePipeline()
-    string = FetchData(pythonAnnotation2)[0].GetRowData().GetAbstractArray(0).GetValue(0)
-    area_dpu = annotate2value(string)*AreaSquare/AreaCirc
 
     # Destroy objects
     Delete(pythonAnnotation2)
@@ -143,15 +124,3 @@ for count, x in enumerate(xs):
 
     with open('temperature_planes.txt','a') as f:
         f.write(f"{round(x,2)} {area_T}\n")
-
-    with open('density_planes.txt','a') as f:
-        f.write(f"{round(x,2)} {area_rho}\n")
-
-    with open('dpdiam_planes.txt','a') as f:
-        f.write(f"{round(x,2)} {area_dpdiam}\n")
-
-    with open('dpmass_planes.txt','a') as f:
-        f.write(f"{round(x,2)} {area_dpmass}\n")
-
-    with open('dpu_planes.txt','a') as f:
-        f.write(f"{round(x,2)} {area_dpu}\n")
