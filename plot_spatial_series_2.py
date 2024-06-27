@@ -40,6 +40,20 @@ ax.scatter(x, y,
            label='Mix 10'
            )
 
+x, y = np.loadtxt("./new_repar_30m/mix_10preal_temperature_planes.txt",
+                   dtype=float,
+                   skiprows=0,
+                   delimiter=' ',
+                   unpack=True)
+ax.scatter(x, y,
+           s=25,
+           c='white',
+           marker='v',
+           edgecolors='black',
+           linewidths=1,
+           label='Mix 10R'
+           )
+
 x, y = np.loadtxt("./new_repar_30m/mix_40p_temperature_planes.txt",
                    dtype=float,
                    skiprows=0,
@@ -69,19 +83,19 @@ ax.scatter(x, y,
            )
 
 
-x, y = np.loadtxt("./new_repar_30m/old_temperature_planes.txt",
-                   dtype=float,
-                   skiprows=0,
-                   delimiter=' ',
-                   unpack=True)
-ax.scatter(x, y,
-           s=25,
-           c='white',
-           marker='*',
-           edgecolors='black',
-           linewidths=1,
-           label='Old'
-           )
+# x, y = np.loadtxt("./new_repar_30m/old_temperature_planes.txt",
+#                    dtype=float,
+#                    skiprows=0,
+#                    delimiter=' ',
+#                    unpack=True)
+# ax.scatter(x, y,
+#            s=25,
+#            c='white',
+#            marker='*',
+#            edgecolors='black',
+#            linewidths=1,
+#            label='Old'
+#            )
 
 fig.tight_layout(pad=0.01)
 ax.grid(color='lightgrey',ls='-.')
@@ -130,6 +144,20 @@ ax.scatter(x, y,
            label='Mix 10'
            )
 
+x, y = np.loadtxt("./new_repar_30m/mix_10preal_u_planes.txt",
+                   dtype=float,
+                   skiprows=0,
+                   delimiter=' ',
+                   unpack=True)
+ax.scatter(x, y,
+           s=25,
+           c='white',
+           marker='v',
+           edgecolors='black',
+           linewidths=1,
+           label='Mix 10R'
+           )
+
 x, y = np.loadtxt("./new_repar_30m/mix_40p_u_planes.txt",
                    dtype=float,
                    skiprows=0,
@@ -158,8 +186,7 @@ ax.scatter(x, y,
            label='UL 40'
            )
 
-
-x, y = np.loadtxt("./new_repar_30m/old_u_planes.txt",
+x, y = np.loadtxt("./new_repar_30m/teste_u_planes.txt",
                    dtype=float,
                    skiprows=0,
                    delimiter=' ',
@@ -170,8 +197,23 @@ ax.scatter(x, y,
            marker='*',
            edgecolors='black',
            linewidths=1,
-           label='Old'
+           label='Ghost IB'
            )
+
+# x, y = np.loadtxt("./new_repar_30m/old_u_planes.txt",
+#                    dtype=float,
+#                    skiprows=0,
+#                    delimiter=' ',
+#                    unpack=True)
+# ax.scatter(x, y,
+#            s=25,
+#            c='white',
+#            marker='*',
+#            edgecolors='black',
+#            linewidths=1,
+#            label='Old'
+#            )
+
 
 fig.tight_layout(pad=0.01)
 ax.grid(color='lightgrey',ls='-.')
@@ -218,6 +260,20 @@ ax.scatter(x, y,
            edgecolors='black',
            linewidths=1,
            label='Mix 10'
+           )
+
+x, y = np.loadtxt("./new_repar_30m/mix_10preal_YH2O_planes.txt",
+                   dtype=float,
+                   skiprows=0,
+                   delimiter=' ',
+                   unpack=True)
+ax.scatter(x, y,
+           s=25,
+           c='white',
+           marker='v',
+           edgecolors='black',
+           linewidths=1,
+           label='Mix 10R'
            )
 
 x, y = np.loadtxt("./new_repar_30m/mix_40p_YH2O_planes.txt",

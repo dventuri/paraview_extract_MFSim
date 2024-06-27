@@ -1,4 +1,4 @@
-# before using in cluster6: ml gnu python/3.9.0 paraview
+# before using in cluster6: ml paraview
 # execute in pvpython
 
 ### IMPORTS
