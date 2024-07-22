@@ -1,8 +1,8 @@
 ### import modules
 import numpy as np
 
-base_dir = "./milena_30m"
-base_fname = f"{base_dir}/data.csv"
+base_dir = "./canal_teste"
+base_fname = f"{base_dir}/dados_canal_teste.csv"
 
 # Function: sort array in correct order and save to file
 def sort(data_array):
@@ -21,6 +21,7 @@ def sort(data_array):
 
 ### read csv data exported from paraview module
 
+
 # u, v and w fluid velocity
 data = []
 data = np.loadtxt(
@@ -30,105 +31,17 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        39, # u_average
-        43, # v_average
+        35, # u_average
+        39, # v_average
         47  # w_average
     )
 )
 data_new = []
 data_new = sort(data)
-np.savetxt(f"{base_dir}/u_avg.txt", data_new)
+np.savetxt(f"{base_dir}/vel.txt", data_new)
 
-# temperature
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        35, # temperature_average
-        38  # temperature_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/temperature_avg.txt', data_new)
 
-# yk_h2o
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        3,  # yk_average
-        6   # yk_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/ykH2O_avg.txt', data_new)
-
-# density
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        11, # rho_average
-        14  # rho_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/rho_avg.txt', data_new)
-
-# dpdiam
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        15, # dpdiam_average
-        18  # dpdiam_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/dpdiam_avg.txt', data_new)
-
-# dpvel
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        23, # dpmu_average
-        27, # dpmv_average
-        31, # dpmw_average
-        26, # dpmu_stddev
-        30, # dpmv_stddev
-        34  # dpmw_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/dpvel_avg.txt', data_new)
-
-# # dpNpart
+# # temperature
 # data = []
 # data = np.loadtxt(
 #     base_fname,
@@ -137,15 +50,16 @@ np.savetxt(f'{base_dir}/dpvel_avg.txt', data_new)
 #     usecols=(
 #         1,  # y position
 #         2,  # z position
-#         15, # dpm_npart_average
-#         18  # dpm_npart_stddev
+#         39, # temperature_average
+#         42  # temperature_stddev
 #     )
 # )
 # data_new = []
 # data_new = sort(data)
-# np.savetxt(f'{base_dir}/dpNpart_avg.txt', data_new)
+# np.savetxt(f'{base_dir}/temperature.txt', data_new)
 
-# # dpm_mass_flow - PDF
+
+# # yk_h2o
 # data = []
 # data = np.loadtxt(
 #     base_fname,
@@ -154,23 +68,158 @@ np.savetxt(f'{base_dir}/dpvel_avg.txt', data_new)
 #     usecols=(
 #         1,  # y position
 #         2,  # z position
-#         43  # vazao_average
+#         3,  # yk_average
+#         6   # yk_stddev
 #     )
 # )
 # data_new = []
 # data_new = sort(data)
+# np.savetxt(f'{base_dir}/yH2O.txt', data_new)
 
-# total_flow = data_new[:,2].sum()
-# data_new[:,2] = data_new[:,2]/total_flow
-# data_new[:,2] = np.cumsum(data_new[:,2])
 
-# np.savetxt(f'{base_dir}/dpm_flow_15.txt', data_new)
-# print('add total_mass_flow to first line!!!', total_flow)
+# dpm_Dmass
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        3,  # dpm_Dmass_average
+        6   # dpm_Dmass_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpm_Dmass.txt', data_new)
 
-### testing fortran array and read function for MFSim
-# data_test_fortran = np.concatenate(([[None,None,None]],masked_data),axis=0)
-# def find_position(y,z,n=41,d=0.025):
-#     j = round(y/d)
-#     k = round(z/d)
-#     pos = j*n + k + 1
-#     return pos
+
+# dpm_Dnpart
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        7,  # dpm_Dnpart_average
+        10  # dpm_Dnpart_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpm_Dnpart.txt', data_new)
+
+
+# dpm_diam
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        11, # dpm_diam_average
+        14  # dpm_diam_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpm_diam.txt', data_new)
+
+
+# dpm_mass
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        15, # dpm_mass_average
+        18  # dpm_mass_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpm_mass.txt', data_new)
+
+
+# dpm_npart
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        19, # dpm_npart_average
+        22  # dpm_npart_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpm_npart.txt', data_new)
+
+
+# dpm_vel
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        23, # dpm_u_average
+        27, # dpm_v_average
+        31, # dpm_w_average
+        26, # dpm_u_stddev
+        30, # dpm_v_stddev
+        34  # dpm_w_stddev
+    )
+)
+data_new = []
+data_new = sort(data)
+np.savetxt(f'{base_dir}/dpm_vel.txt', data_new)
+
+
+# dpm_mass_flow - PDF
+data = []
+data = np.loadtxt(
+    base_fname,
+    delimiter=',',
+    skiprows=1,
+    usecols=(
+        1,  # y position
+        2,  # z position
+        43  # vazao_average
+    )
+)
+data_new = []
+data_new = sort(data)
+
+total_flow = data_new[:,2].sum()
+data_new[:,2] = data_new[:,2]/total_flow
+data_new[:,2] = np.cumsum(data_new[:,2])
+
+np.savetxt(f'{base_dir}/dpm_flow.txt', data_new)
+print('add total_mass_flow to first line!!!', total_flow)
+
+
+# massa de gotas reais injetadas
+# num_gotas_por_dt = 10
+# diam_gotas = 0.8E-3
+# vol_1gota = np.pi/6*diam_gotas**3
+# vol_gotas_por_dt = num_gotas_por_dt*vol_1gota
+# rho_gotas = 1000
+# massa_gotas_por_dt = vol_gotas_por_dt*rho_gotas
+# dt = 1E-4
+# massa_gotas_por_s = massa_gotas_por_dt/dt
+# print('massa de gotas reais injetadas', massa_gotas_por_s)
+print('massa de gotas reais injetadas', 0.01)
