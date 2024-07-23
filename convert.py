@@ -31,86 +31,14 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        35, # u_average
-        39, # v_average
-        47  # w_average
+        27, # u_average
+        31, # v_average
+        39  # w_average
     )
 )
 data_new = []
 data_new = sort(data)
 np.savetxt(f"{base_dir}/vel.txt", data_new)
-
-
-# # temperature
-# data = []
-# data = np.loadtxt(
-#     base_fname,
-#     delimiter=',',
-#     skiprows=1,
-#     usecols=(
-#         1,  # y position
-#         2,  # z position
-#         39, # temperature_average
-#         42  # temperature_stddev
-#     )
-# )
-# data_new = []
-# data_new = sort(data)
-# np.savetxt(f'{base_dir}/temperature.txt', data_new)
-
-
-# # yk_h2o
-# data = []
-# data = np.loadtxt(
-#     base_fname,
-#     delimiter=',',
-#     skiprows=1,
-#     usecols=(
-#         1,  # y position
-#         2,  # z position
-#         3,  # yk_average
-#         6   # yk_stddev
-#     )
-# )
-# data_new = []
-# data_new = sort(data)
-# np.savetxt(f'{base_dir}/yH2O.txt', data_new)
-
-
-# dpm_Dmass
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        3,  # dpm_Dmass_average
-        6   # dpm_Dmass_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/dpm_Dmass.txt', data_new)
-
-
-# dpm_Dnpart
-data = []
-data = np.loadtxt(
-    base_fname,
-    delimiter=',',
-    skiprows=1,
-    usecols=(
-        1,  # y position
-        2,  # z position
-        7,  # dpm_Dnpart_average
-        10  # dpm_Dnpart_stddev
-    )
-)
-data_new = []
-data_new = sort(data)
-np.savetxt(f'{base_dir}/dpm_Dnpart.txt', data_new)
 
 
 # dpm_diam
@@ -122,8 +50,8 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        11, # dpm_diam_average
-        14  # dpm_diam_stddev
+        3,  # dpm_diam_average
+        6   # dpm_diam_stddev
     )
 )
 data_new = []
@@ -158,8 +86,8 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        19, # dpm_npart_average
-        22  # dpm_npart_stddev
+        11, # dpm_npart_average
+        14  # dpm_npart_stddev
     )
 )
 data_new = []
@@ -176,12 +104,12 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        23, # dpm_u_average
-        27, # dpm_v_average
-        31, # dpm_w_average
-        26, # dpm_u_stddev
-        30, # dpm_v_stddev
-        34  # dpm_w_stddev
+        15, # dpm_u_average
+        19, # dpm_v_average
+        23, # dpm_w_average
+        18, # dpm_u_stddev
+        22, # dpm_v_stddev
+        26  # dpm_w_stddev
     )
 )
 data_new = []
@@ -189,7 +117,7 @@ data_new = sort(data)
 np.savetxt(f'{base_dir}/dpm_vel.txt', data_new)
 
 
-# dpm_mass_flow - PDF
+# dpm_mass_flow
 data = []
 data = np.loadtxt(
     base_fname,
@@ -198,7 +126,7 @@ data = np.loadtxt(
     usecols=(
         1,  # y position
         2,  # z position
-        43  # vazao_average
+        35  # vazao_average
     )
 )
 data_new = []
