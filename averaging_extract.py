@@ -4,7 +4,7 @@
 # modified
 
 ### filename and timestep selection
-base_dir = "/home/pmota/st_euler/injetor_m/case1"
+base_dir = "/home/dventuri/run/injetor_m/case1"
 base_fname = f"{base_dir}/output_t11/ns_output_ct.*.hdf5"
 timestep_treshold = 40000
 dx = 0.00625
@@ -40,7 +40,7 @@ db.PointArrayStatus = [
     'Y_C2H6', 'Y_C9H19-1', 'Y_NC13H28',
     'Y_NC6H14', 'Y_NC7H16',
     'dpm_diam', 'dpm_mass', 'dpm_npart',
-    'dpm_u', 'dpm_v', 'dpm_w'
+    'dpm_u', 'dpm_v', 'dpm_w', 'dpm_temp'
 ]
 
 # Extract only base level (lbot)
@@ -83,4 +83,3 @@ SaveData(f'./dados_atomizador_extract.csv',
          ChooseArraysToWrite=0,
          FieldAssociation='Cell Data'
 )
-
