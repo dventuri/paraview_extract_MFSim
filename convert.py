@@ -137,7 +137,7 @@ data_new[:,2] = data_new[:,2]/total_flow
 data_new[:,2] = np.cumsum(data_new[:,2])
 
 np.savetxt(f'{base_dir}/dpm_flow.txt', data_new)
-print('add total_mass_flow to first line!!!', total_flow)
+# print('add total_mass_flow to first line!!!', total_flow)
 
 
 # massa de gotas reais injetadas
@@ -150,4 +150,4 @@ print('add total_mass_flow to first line!!!', total_flow)
 # dt = 1E-4
 # massa_gotas_por_s = massa_gotas_por_dt/dt
 # print('massa de gotas reais injetadas', massa_gotas_por_s)
-print('massa de gotas reais injetadas', 0.01)
+# print('massa de gotas reais injetadas', 0.01)
