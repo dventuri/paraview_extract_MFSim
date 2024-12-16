@@ -9,8 +9,8 @@ from paraview.simple import *
 
 
 ### GLOBAL DEFINITIONS
-# base_dir = "/home/dventuri/run/recap_14m_10p_coll_cons_piso"
-base_dir = "/home/dventuri/run/repar_30m_keps_np10_coll"
+base_dir = "/home/dventuri/run/recap_14m_keps_np10_coll_coal_ssd_atmzrepar"
+# base_dir = "/home/dventuri/run/repar_30m_keps_np10_coll_coal_ssd_atmz"
 base_fname = f"{base_dir}/output/ns_output_ct.*.hdf5"
 timestep_treshold = 0
 
@@ -49,10 +49,10 @@ print("Reading timestep ", fnames[-1][-10:-5])
 # Properties modified on db
 db.PointArrayStatus = ['u', 'Y_H2O', 'temperature', 'density']
 
-# xs = np.linspace(0.1, 13.9, 139)  # 0.1m
-xs = np.linspace(0.1, 29.9, 150)    # 0.2m
+xs = np.linspace(0.1, 13.9, 139)  # 0.1m
+# xs = np.linspace(0.1, 29.9, 150)    # 0.2m
 for count, x in enumerate(xs):
-    # if(x == 30): continue
+
     print('Plane at x = ', round(x,2), ' m')
 
     # Slice
@@ -75,8 +75,8 @@ for count, x in enumerate(xs):
     clip1 = Clip(Input=slice1)
     clip1.ClipType = 'Cylinder'
     clip1.ClipType.Axis = [1.0, 0.0, 0.0]
-    # clip1.ClipType.Radius = 0.3207
     clip1.ClipType.Radius = 0.295275
+    # clip1.ClipType.Radius = 0.32065
 
     # Integrate Variables
     integrateVariables2 = IntegrateVariables(Input=clip1)
@@ -121,16 +121,30 @@ for count, x in enumerate(xs):
     Delete(slice1)
     del slice1
 
-    ### save data
+    ### save data recap
     print("Saving data")
-    with open('/home/dventuri/repos/paraview_extract_MFSim/repar_keps/repar_u_planes.txt','a') as f:
+    with open('/home/dventuri/repos/paraview_extract_MFSim/recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_u_planes.txt','a') as f:
         f.write(f"{round(x,2)} {area_u}\n")
 
-    with open('/home/dventuri/repos/paraview_extract_MFSim/repar_keps/repar_YH2O_planes.txt','a') as f:
+    with open('/home/dventuri/repos/paraview_extract_MFSim/recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_YH2O_planes.txt','a') as f:
         f.write(f"{round(x,2)} {area_YH2O}\n")
 
-    with open('/home/dventuri/repos/paraview_extract_MFSim/repar_keps/repar_temperature_planes.txt','a') as f:
+    with open('/home/dventuri/repos/paraview_extract_MFSim/recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_temperature_planes.txt','a') as f:
         f.write(f"{round(x,2)} {area_T}\n")
 
-    with open('/home/dventuri/repos/paraview_extract_MFSim/repar_keps/repar_rho_planes.txt','a') as f:
+    with open('/home/dventuri/repos/paraview_extract_MFSim/recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_rho_planes.txt','a') as f:
         f.write(f"{round(x,2)} {area_rho}\n")
+
+    ### save data repar
+    # print("Saving data")
+    # with open('/home/dventuri/repos/paraview_extract_MFSim/repar_30m_keps_np10_coll_coal_ssd_atmz/repar_u_planes.txt','a') as f:
+    #     f.write(f"{round(x,2)} {area_u}\n")
+
+    # with open('/home/dventuri/repos/paraview_extract_MFSim/repar_30m_keps_np10_coll_coal_ssd_atmz/repar_YH2O_planes.txt','a') as f:
+    #     f.write(f"{round(x,2)} {area_YH2O}\n")
+
+    # with open('/home/dventuri/repos/paraview_extract_MFSim/repar_30m_keps_np10_coll_coal_ssd_atmz/repar_temperature_planes.txt','a') as f:
+    #     f.write(f"{round(x,2)} {area_T}\n")
+
+    # with open('/home/dventuri/repos/paraview_extract_MFSim/repar_30m_keps_np10_coll_coal_ssd_atmz/repar_rho_planes.txt','a') as f:
+    #     f.write(f"{round(x,2)} {area_rho}\n")

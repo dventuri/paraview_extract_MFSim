@@ -8,7 +8,7 @@ plt.rcdefaults()
 plt.rcParams['axes.formatter.use_locale'] = True
 
 
-x, y = np.loadtxt("./recap_14m/recap_temperature_planes.txt",
+x, y = np.loadtxt("./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_temperature_planes.txt",
                    dtype=float,
                    skiprows=0,
                    delimiter=' ',
@@ -31,12 +31,12 @@ ax.plot(x, y-273.15,
 fig.tight_layout(pad=0.01)
 ax.grid(color='lightgrey',ls='-.')
 # ax.legend(facecolor="white", framealpha=1, frameon=1)
-plt.savefig('./recap_14m/temperature_planes.png',
+plt.savefig('./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/temperature_planes.png',
             dpi=1200,
             format='png')
 
 
-x, y = np.loadtxt("./recap_14m/recap_u_planes.txt",
+x, y = np.loadtxt("./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_u_planes.txt",
                    dtype=float,
                    skiprows=0,
                    delimiter=' ',
@@ -46,7 +46,7 @@ x, y = np.loadtxt("./recap_14m/recap_u_planes.txt",
 fig, ax = plt.subplots()
 ax.set_xlabel(r'$x$ [m]')
 ax.set_ylabel(r'$U$ [m/s]')
-ax.axis([0, 14, 11, 13])
+ax.axis([0, 14, 10, 11])
 ax.xaxis.set_major_locator(plt.MultipleLocator(2))
 ax.xaxis.set_minor_locator(plt.MultipleLocator(1))
 ax.yaxis.set_major_locator(plt.MultipleLocator(0.5))
@@ -59,12 +59,12 @@ ax.plot(x, y,
 fig.tight_layout(pad=0.01)
 ax.grid(color='lightgrey',ls='-.')
 # ax.legend(facecolor="white", framealpha=1, frameon=1)
-plt.savefig('./recap_14m/u_planes.png',
+plt.savefig('./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/u_planes.png',
             dpi=1200,
             format='png')
 
 
-x, y = np.loadtxt("./recap_14m/recap_YH2O_planes.txt",
+x, y = np.loadtxt("./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_YH2O_planes.txt",
                    dtype=float,
                    skiprows=0,
                    delimiter=' ',
@@ -87,12 +87,12 @@ ax.plot(x, y*100,
 fig.tight_layout(pad=0.01)
 ax.grid(color='lightgrey',ls='-.')
 # ax.legend(facecolor="white", framealpha=1, frameon=1)
-plt.savefig('./recap_14m/YH2O_planes.png',
+plt.savefig('./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/YH2O_planes.png',
             dpi=1200,
             format='png')
 
 
-x, y = np.loadtxt("./recap_14m/recap_rho_planes.txt",
+x, y = np.loadtxt("./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/recap_rho_planes.txt",
                    dtype=float,
                    skiprows=0,
                    delimiter=' ',
@@ -115,6 +115,6 @@ ax.plot(x, y,
 fig.tight_layout(pad=0.01)
 ax.grid(color='lightgrey',ls='-.')
 # ax.legend(facecolor="white", framealpha=1, frameon=1)
-plt.savefig('./recap_14m/rho_planes.png',
+plt.savefig('./recap_14m_keps_np10_coll_coal_ssd_atmzrepar/rho_planes.png',
             dpi=1200,
             format='png')
